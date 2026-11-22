@@ -13,6 +13,16 @@ export const envValidationSchema = Joi.object({
   JWT_REFRESH_SECRET: Joi.string().min(32).required(),
   JWT_REFRESH_EXPIRES_IN: Joi.string().default('7d'),
 
+  ADMIN_JWT_ACCESS_SECRET: Joi.string().min(32).allow('').optional(),
+  ADMIN_JWT_REFRESH_SECRET: Joi.string().min(32).allow('').optional(),
+  ADMIN_JWT_ISSUER: Joi.string().allow('').optional(),
+  ADMIN_JWT_AUDIENCE: Joi.string().default('admin-api'),
+
+  STORE_JWT_ACCESS_SECRET: Joi.string().min(32).allow('').optional(),
+  STORE_JWT_REFRESH_SECRET: Joi.string().min(32).allow('').optional(),
+  STORE_JWT_ISSUER: Joi.string().allow('').optional(),
+  STORE_JWT_AUDIENCE: Joi.string().default('store-api'),
+
   REDIS_HOST: Joi.string().default('localhost'),
   REDIS_PORT: Joi.number().default(6379),
 

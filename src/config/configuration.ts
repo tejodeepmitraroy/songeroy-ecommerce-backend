@@ -12,6 +12,26 @@ export default () => ({
     accessExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN || '15m',
     refreshSecret: process.env.JWT_REFRESH_SECRET,
     refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
+    admin: {
+      accessSecret: process.env.ADMIN_JWT_ACCESS_SECRET || process.env.JWT_ACCESS_SECRET,
+      accessExpiresIn:
+        process.env.ADMIN_JWT_ACCESS_EXPIRES_IN || process.env.JWT_ACCESS_EXPIRES_IN || '15m',
+      refreshSecret: process.env.ADMIN_JWT_REFRESH_SECRET || process.env.JWT_REFRESH_SECRET,
+      refreshExpiresIn:
+        process.env.ADMIN_JWT_REFRESH_EXPIRES_IN || process.env.JWT_REFRESH_EXPIRES_IN || '7d',
+      audience: process.env.ADMIN_JWT_AUDIENCE || 'admin-api',
+      issuer: process.env.ADMIN_JWT_ISSUER || 'songeroy-backend',
+    },
+    store: {
+      accessSecret: process.env.STORE_JWT_ACCESS_SECRET || process.env.JWT_ACCESS_SECRET,
+      accessExpiresIn:
+        process.env.STORE_JWT_ACCESS_EXPIRES_IN || process.env.JWT_ACCESS_EXPIRES_IN || '15m',
+      refreshSecret: process.env.STORE_JWT_REFRESH_SECRET || process.env.JWT_REFRESH_SECRET,
+      refreshExpiresIn:
+        process.env.STORE_JWT_REFRESH_EXPIRES_IN || process.env.JWT_REFRESH_EXPIRES_IN || '7d',
+      audience: process.env.STORE_JWT_AUDIENCE || 'store-api',
+      issuer: process.env.STORE_JWT_ISSUER || 'songeroy-backend',
+    },
   },
 
   redis: {

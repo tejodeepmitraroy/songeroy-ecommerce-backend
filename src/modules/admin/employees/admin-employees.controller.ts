@@ -9,13 +9,16 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RoleName } from '@prisma/client';
 
 import { CurrentUser } from '../../../common/decorators/current-user.decorator.js';
 import { Roles } from '../../../common/decorators/roles.decorator.js';
+import { RolesGuard } from '../../../common/guards/roles.guard.js';
 import type { AuthenticatedUser } from '../../../common/interfaces/jwt-payload.interface.js';
+import { AdminJwtAuthGuard } from '../auth/guards/admin-jwt-auth.guard.js';
 import { AdminEmployeesService } from './admin-employees.service.js';
 import { QueryEmployeeDto } from './dto/query-employee.dto.js';
 import { RegisterEmployeeDto } from './dto/register-employee.dto.js';
@@ -23,7 +26,7 @@ import { UpdateEmployeeDto } from './dto/update-employee.dto.js';
 
 @ApiTags('Admin Employees')
 @ApiBearerAuth()
-// @UseGuards(AdminJwtAuthGuard, RolesGuard)
+@UseGuards(AdminJwtAuthGuard, RolesGuard)
 @Controller('employees')
 export class AdminEmployeesController {
   constructor(private readonly employeesService: AdminEmployeesService) {}

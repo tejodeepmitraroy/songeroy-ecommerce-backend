@@ -7,6 +7,8 @@ import helmet from 'helmet';
 import { AppModule } from './app.module.js';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor.js';
+import { AdminModule } from './modules/admin/admin.module.js';
+import { StorefrontModule } from './modules/storefront/storefront.module.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -46,9 +48,52 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
 
   // Swagger OpenAPI Documentation
+  // 1. Admin API Documentation (/docs/admin)
+  const adminSwaggerConfig = new DocumentBuilder()
+    .setTitle('Songe Roy - Admin API')
+    .setDescription('Administrative API for dashboard and authorized staff')
+    .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        description: 'Admin JWT access token (audience: admin-api)',
+      },
+      'admin-token',
+    )
+    .build();
+  const adminDocument = SwaggerModule.createDocument(app, adminSwaggerConfig, {
+    include: [AdminModule],
+    deepScanRoutes: true,
+  });
+  SwaggerModule.setup('docs/admin', app, adminDocument);
+
+  // 2. Storefront API Documentation (/docs/store)
+  const storeSwaggerConfig = new DocumentBuilder()
+    .setTitle('Songe Roy - Storefront API')
+    .setDescription('Storefront API for public and authenticated customer operations')
+    .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        description: 'Customer JWT access token (audience: store-api)',
+      },
+      'customer-token',
+    )
+    .build();
+  const storeDocument = SwaggerModule.createDocument(app, storeSwaggerConfig, {
+    include: [StorefrontModule],
+    deepScanRoutes: true,
+  });
+  SwaggerModule.setup('docs/store', app, storeDocument);
+
+  // 3. Combined API Documentation (/docs)
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Songe Roy E-Commerce API')
-    .setDescription('Production-ready E-Commerce REST API backend')
+    .setTitle('Songe Roy E-Commerce API (Combined)')
+    .setDescription('Complete E-Commerce REST API backend (Admin & Storefront)')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
@@ -59,7 +104,9 @@ async function bootstrap() {
   await app.listen(port);
 
   logger.log(`Application is running on: http://localhost:${port}/${apiPrefix}`);
-  logger.log(`API documentation available at: http://localhost:${port}/docs`);
+  logger.log(`API documentation (Combined): http://localhost:${port}/docs`);
+  logger.log(`Admin API documentation: http://localhost:${port}/docs/admin`);
+  logger.log(`Storefront API documentation: http://localhost:${port}/docs/store`);
 }
 
 await bootstrap();
