@@ -475,8 +475,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "User",
@@ -599,8 +603,12 @@
               "products": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["brandId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "brandId"
+                  ]
                 },
                 "to": {
                   "model": "Product",
@@ -680,8 +688,12 @@
               "items": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["cartId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "cartId"
+                  ]
                 },
                 "to": {
                   "model": "CartItem",
@@ -692,8 +704,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "User",
@@ -776,8 +792,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["cartId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "cartId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Cart",
@@ -788,8 +808,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["variantId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "variantId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ProductVariant",
@@ -898,8 +922,12 @@
               "children": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["parentId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "parentId"
+                  ]
                 },
                 "to": {
                   "model": "Category",
@@ -910,8 +938,12 @@
                 "cardinality": "N:1",
                 "nullable": true,
                 "on": {
-                  "localFields": ["parentId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "parentId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Category",
@@ -921,8 +953,12 @@
               "products": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["categoryId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "categoryId"
+                  ]
                 },
                 "to": {
                   "model": "ProductCategory",
@@ -1106,8 +1142,12 @@
               "usages": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["couponId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "couponId"
+                  ]
                 },
                 "to": {
                   "model": "CouponUsage",
@@ -1213,8 +1253,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["couponId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "couponId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Coupon",
@@ -1225,8 +1269,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "User",
@@ -1339,8 +1387,12 @@
               "employeeRoles": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["employeeId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "employeeId"
+                  ]
                 },
                 "to": {
                   "model": "EmployeeRole",
@@ -1424,8 +1476,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["employeeId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "employeeId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "Employee",
@@ -1436,8 +1492,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["roleId"],
-                  "targetFields": ["rid"]
+                  "localFields": [
+                    "roleId"
+                  ],
+                  "targetFields": [
+                    "rid"
+                  ]
                 },
                 "to": {
                   "model": "Role",
@@ -1526,8 +1586,12 @@
               "movements": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["inventoryId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "inventoryId"
+                  ]
                 },
                 "to": {
                   "model": "InventoryMovement",
@@ -1538,8 +1602,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["variantId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "variantId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ProductVariant",
@@ -1550,8 +1618,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["warehouseId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "warehouseId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Warehouse",
@@ -1653,8 +1725,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["inventoryId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "inventoryId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Inventory",
@@ -1743,8 +1819,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "User",
@@ -1908,8 +1988,12 @@
                 "cardinality": "1:1",
                 "nullable": true,
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["orderId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "orderId"
+                  ]
                 },
                 "to": {
                   "model": "OrderAddress",
@@ -1919,8 +2003,12 @@
               "items": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["orderId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "orderId"
+                  ]
                 },
                 "to": {
                   "model": "OrderItem",
@@ -1930,8 +2018,12 @@
               "payments": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["orderId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "orderId"
+                  ]
                 },
                 "to": {
                   "model": "Payment",
@@ -1941,8 +2033,12 @@
               "returnRequests": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["orderId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "orderId"
+                  ]
                 },
                 "to": {
                   "model": "ReturnRequest",
@@ -1952,8 +2048,12 @@
               "shipments": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["orderId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "orderId"
+                  ]
                 },
                 "to": {
                   "model": "Shipment",
@@ -1963,8 +2063,12 @@
               "statusHistory": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["orderId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "orderId"
+                  ]
                 },
                 "to": {
                   "model": "OrderStatusHistory",
@@ -1975,8 +2079,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "User",
@@ -2118,8 +2226,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["orderId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "orderId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Order",
@@ -2271,8 +2383,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["orderId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "orderId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Order",
@@ -2283,8 +2399,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["variantId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "variantId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ProductVariant",
@@ -2384,8 +2504,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["orderId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "orderId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Order",
@@ -2508,8 +2632,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["orderId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "orderId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Order",
@@ -2519,8 +2647,12 @@
               "refunds": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["paymentId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "paymentId"
+                  ]
                 },
                 "to": {
                   "model": "Refund",
@@ -2530,8 +2662,12 @@
               "transactions": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["paymentId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "paymentId"
+                  ]
                 },
                 "to": {
                   "model": "PaymentTransaction",
@@ -2626,8 +2762,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["paymentId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "paymentId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Payment",
@@ -2811,8 +2951,12 @@
               "rolePermissions": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["rid"],
-                  "targetFields": ["permissionId"]
+                  "localFields": [
+                    "rid"
+                  ],
+                  "targetFields": [
+                    "permissionId"
+                  ]
                 },
                 "to": {
                   "model": "RolePermission",
@@ -2936,8 +3080,12 @@
               "attributes": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["productId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "productId"
+                  ]
                 },
                 "to": {
                   "model": "ProductAttribute",
@@ -2948,8 +3096,12 @@
                 "cardinality": "N:1",
                 "nullable": true,
                 "on": {
-                  "localFields": ["brandId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "brandId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Brand",
@@ -2959,8 +3111,12 @@
               "categories": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["productId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "productId"
+                  ]
                 },
                 "to": {
                   "model": "ProductCategory",
@@ -2970,8 +3126,12 @@
               "images": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["productId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "productId"
+                  ]
                 },
                 "to": {
                   "model": "ProductImage",
@@ -2981,8 +3141,12 @@
               "reviews": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["productId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "productId"
+                  ]
                 },
                 "to": {
                   "model": "Review",
@@ -2992,8 +3156,12 @@
               "variants": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["productId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "productId"
+                  ]
                 },
                 "to": {
                   "model": "ProductVariant",
@@ -3080,8 +3248,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["productId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "productId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Product",
@@ -3091,8 +3263,12 @@
               "values": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["attributeId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "attributeId"
+                  ]
                 },
                 "to": {
                   "model": "ProductAttributeValue",
@@ -3155,8 +3331,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["attributeId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "attributeId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ProductAttribute",
@@ -3167,8 +3347,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["variantId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "variantId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ProductVariant",
@@ -3217,8 +3401,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["categoryId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "categoryId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Category",
@@ -3229,8 +3417,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["productId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "productId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Product",
@@ -3304,8 +3496,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["productId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "productId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Product",
@@ -3436,8 +3632,12 @@
               "attributeValues": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["variantId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "variantId"
+                  ]
                 },
                 "to": {
                   "model": "ProductAttributeValue",
@@ -3447,8 +3647,12 @@
               "cartItems": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["variantId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "variantId"
+                  ]
                 },
                 "to": {
                   "model": "CartItem",
@@ -3458,8 +3662,12 @@
               "inventoryItems": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["variantId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "variantId"
+                  ]
                 },
                 "to": {
                   "model": "Inventory",
@@ -3469,8 +3677,12 @@
               "orderItems": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["variantId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "variantId"
+                  ]
                 },
                 "to": {
                   "model": "OrderItem",
@@ -3481,8 +3693,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["productId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "productId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Product",
@@ -3492,8 +3708,12 @@
               "reservations": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["variantId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "variantId"
+                  ]
                 },
                 "to": {
                   "model": "StockReservation",
@@ -3503,8 +3723,12 @@
               "returnItems": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["variantId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "variantId"
+                  ]
                 },
                 "to": {
                   "model": "ReturnItem",
@@ -3765,8 +3989,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["paymentId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "paymentId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Payment",
@@ -3851,8 +4079,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["returnRequestId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "returnRequestId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ReturnRequest",
@@ -3863,8 +4095,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["variantId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "variantId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ProductVariant",
@@ -3969,8 +4205,12 @@
               "items": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["returnRequestId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "returnRequestId"
+                  ]
                 },
                 "to": {
                   "model": "ReturnItem",
@@ -3981,8 +4221,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["orderId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "orderId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Order",
@@ -3993,8 +4237,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "User",
@@ -4117,8 +4365,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["productId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "productId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Product",
@@ -4129,8 +4381,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "User",
@@ -4229,8 +4485,12 @@
               "employeeRoles": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["rid"],
-                  "targetFields": ["roleId"]
+                  "localFields": [
+                    "rid"
+                  ],
+                  "targetFields": [
+                    "roleId"
+                  ]
                 },
                 "to": {
                   "model": "EmployeeRole",
@@ -4240,8 +4500,12 @@
               "rolePermissions": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["rid"],
-                  "targetFields": ["roleId"]
+                  "localFields": [
+                    "rid"
+                  ],
+                  "targetFields": [
+                    "roleId"
+                  ]
                 },
                 "to": {
                   "model": "RolePermission",
@@ -4310,8 +4574,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["permissionId"],
-                  "targetFields": ["rid"]
+                  "localFields": [
+                    "permissionId"
+                  ],
+                  "targetFields": [
+                    "rid"
+                  ]
                 },
                 "to": {
                   "model": "Permission",
@@ -4322,8 +4590,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["roleId"],
-                  "targetFields": ["rid"]
+                  "localFields": [
+                    "roleId"
+                  ],
+                  "targetFields": [
+                    "rid"
+                  ]
                 },
                 "to": {
                   "model": "Role",
@@ -4440,8 +4712,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["orderId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "orderId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Order",
@@ -4452,8 +4728,12 @@
                 "cardinality": "N:1",
                 "nullable": true,
                 "on": {
-                  "localFields": ["shippingMethodId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "shippingMethodId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ShippingMethod",
@@ -4463,8 +4743,12 @@
               "trackingEvents": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["shipmentId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "shipmentId"
+                  ]
                 },
                 "to": {
                   "model": "ShipmentTracking",
@@ -4562,8 +4846,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["shipmentId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "shipmentId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Shipment",
@@ -4652,8 +4940,12 @@
               "shipments": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["shippingMethodId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "shippingMethodId"
+                  ]
                 },
                 "to": {
                   "model": "Shipment",
@@ -4749,8 +5041,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["variantId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "variantId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "ProductVariant",
@@ -4876,8 +5172,12 @@
               "addresses": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["userId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
                 },
                 "to": {
                   "model": "Address",
@@ -4888,8 +5188,12 @@
                 "cardinality": "1:1",
                 "nullable": true,
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["userId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
                 },
                 "to": {
                   "model": "Cart",
@@ -4899,8 +5203,12 @@
               "couponUsages": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["userId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
                 },
                 "to": {
                   "model": "CouponUsage",
@@ -4910,8 +5218,12 @@
               "notifications": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["userId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
                 },
                 "to": {
                   "model": "Notification",
@@ -4921,8 +5233,12 @@
               "orders": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["userId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
                 },
                 "to": {
                   "model": "Order",
@@ -4932,8 +5248,12 @@
               "returnRequests": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["userId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
                 },
                 "to": {
                   "model": "ReturnRequest",
@@ -4943,8 +5263,12 @@
               "reviews": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["userId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
                 },
                 "to": {
                   "model": "Review",
@@ -4955,8 +5279,12 @@
                 "cardinality": "1:1",
                 "nullable": true,
                 "on": {
-                  "localFields": ["uid"],
-                  "targetFields": ["userId"]
+                  "localFields": [
+                    "uid"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
                 },
                 "to": {
                   "model": "Wishlist",
@@ -5066,8 +5394,12 @@
               "inventories": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["warehouseId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "warehouseId"
+                  ]
                 },
                 "to": {
                   "model": "Inventory",
@@ -5144,8 +5476,12 @@
               "items": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["wishlistId"]
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "wishlistId"
+                  ]
                 },
                 "to": {
                   "model": "WishlistItem",
@@ -5156,8 +5492,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["uid"]
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "uid"
+                  ]
                 },
                 "to": {
                   "model": "User",
@@ -5223,8 +5563,12 @@
                 "cardinality": "N:1",
                 "nullable": false,
                 "on": {
-                  "localFields": ["wishlistId"],
-                  "targetFields": ["id"]
+                  "localFields": [
+                    "wishlistId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
                 },
                 "to": {
                   "model": "Wishlist",
@@ -5353,12 +5697,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["userId"],
+                    "columns": [
+                      "userId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Address"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -5366,14 +5714,18 @@
               ],
               "indexes": [
                 {
-                  "columns": ["userId"],
+                  "columns": [
+                    "userId"
+                  ],
                   "name": "Address_userId_idx_a489d58a",
                   "prefix": "Address_userId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -5437,11 +5789,15 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["slug"]
+                  "columns": [
+                    "slug"
+                  ]
                 }
               ]
             },
@@ -5481,16 +5837,22 @@
               "foreignKeys": [
                 {
                   "index": {
-                    "unique": ["userId"]
+                    "unique": [
+                      "userId"
+                    ]
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["userId"],
+                    "columns": [
+                      "userId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Cart"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -5498,11 +5860,15 @@
               ],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["userId"]
+                  "columns": [
+                    "userId"
+                  ]
                 }
               ]
             },
@@ -5560,12 +5926,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["cartId"],
+                    "columns": [
+                      "cartId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "CartItem"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Cart"
                   }
@@ -5576,12 +5946,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["variantId"],
+                    "columns": [
+                      "variantId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "CartItem"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductVariant"
                   }
@@ -5589,24 +5963,33 @@
               ],
               "indexes": [
                 {
-                  "columns": ["cartId"],
+                  "columns": [
+                    "cartId"
+                  ],
                   "name": "CartItem_cartId_idx_79939295",
                   "prefix": "CartItem_cartId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["variantId"],
+                  "columns": [
+                    "variantId"
+                  ],
                   "name": "CartItem_variantId_idx_e16bb45d",
                   "prefix": "CartItem_variantId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["cartId", "variantId"]
+                  "columns": [
+                    "cartId",
+                    "variantId"
+                  ]
                 }
               ]
             },
@@ -5679,12 +6062,16 @@
                   },
                   "onDelete": "setNull",
                   "source": {
-                    "columns": ["parentId"],
+                    "columns": [
+                      "parentId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Category"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Category"
                   }
@@ -5692,18 +6079,24 @@
               ],
               "indexes": [
                 {
-                  "columns": ["parentId"],
+                  "columns": [
+                    "parentId"
+                  ],
                   "name": "Category_parentId_idx_6a68f597",
                   "prefix": "Category_parentId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["slug"]
+                  "columns": [
+                    "slug"
+                  ]
                 }
               ]
             },
@@ -5841,11 +6234,15 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["code"]
+                  "columns": [
+                    "code"
+                  ]
                 }
               ]
             },
@@ -5891,12 +6288,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["couponId"],
+                    "columns": [
+                      "couponId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "CouponUsage"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Coupon"
                   }
@@ -5907,12 +6308,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["userId"],
+                    "columns": [
+                      "userId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "CouponUsage"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -5920,20 +6325,26 @@
               ],
               "indexes": [
                 {
-                  "columns": ["couponId"],
+                  "columns": [
+                    "couponId"
+                  ],
                   "name": "CouponUsage_couponId_idx_a9dd19dc",
                   "prefix": "CouponUsage_couponId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["userId"],
+                  "columns": [
+                    "userId"
+                  ],
                   "name": "CouponUsage_userId_idx_a489d58a",
                   "prefix": "CouponUsage_userId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -6011,11 +6422,15 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["uid"]
+                "columns": [
+                  "uid"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["email"]
+                  "columns": [
+                    "email"
+                  ]
                 }
               ]
             },
@@ -6056,12 +6471,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["employeeId"],
+                    "columns": [
+                      "employeeId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "EmployeeRole"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Employee"
                   }
@@ -6072,12 +6491,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["roleId"],
+                    "columns": [
+                      "roleId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "EmployeeRole"
                   },
                   "target": {
-                    "columns": ["rid"],
+                    "columns": [
+                      "rid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Role"
                   }
@@ -6085,24 +6508,33 @@
               ],
               "indexes": [
                 {
-                  "columns": ["employeeId"],
+                  "columns": [
+                    "employeeId"
+                  ],
                   "name": "EmployeeRole_employeeId_idx_087dd4a6",
                   "prefix": "EmployeeRole_employeeId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["roleId"],
+                  "columns": [
+                    "roleId"
+                  ],
                   "name": "EmployeeRole_roleId_idx_ffccc9a4",
                   "prefix": "EmployeeRole_roleId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["employeeId", "roleId"]
+                  "columns": [
+                    "employeeId",
+                    "roleId"
+                  ]
                 }
               ]
             },
@@ -6169,12 +6601,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["variantId"],
+                    "columns": [
+                      "variantId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Inventory"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductVariant"
                   }
@@ -6185,12 +6621,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["warehouseId"],
+                    "columns": [
+                      "warehouseId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Inventory"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Warehouse"
                   }
@@ -6198,24 +6638,33 @@
               ],
               "indexes": [
                 {
-                  "columns": ["variantId"],
+                  "columns": [
+                    "variantId"
+                  ],
                   "name": "Inventory_variantId_idx_e16bb45d",
                   "prefix": "Inventory_variantId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["warehouseId"],
+                  "columns": [
+                    "warehouseId"
+                  ],
                   "name": "Inventory_warehouseId_idx_8ff93e70",
                   "prefix": "Inventory_warehouseId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["variantId", "warehouseId"]
+                  "columns": [
+                    "variantId",
+                    "warehouseId"
+                  ]
                 }
               ]
             },
@@ -6284,12 +6733,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["inventoryId"],
+                    "columns": [
+                      "inventoryId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "InventoryMovement"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Inventory"
                   }
@@ -6297,14 +6750,18 @@
               ],
               "indexes": [
                 {
-                  "columns": ["inventoryId"],
+                  "columns": [
+                    "inventoryId"
+                  ],
                   "name": "InventoryMovement_inventoryId_idx_367f33d0",
                   "prefix": "InventoryMovement_inventoryId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -6359,12 +6816,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["userId"],
+                    "columns": [
+                      "userId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Notification"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -6372,14 +6833,18 @@
               ],
               "indexes": [
                 {
-                  "columns": ["userId"],
+                  "columns": [
+                    "userId"
+                  ],
                   "name": "Notification_userId_idx_a489d58a",
                   "prefix": "Notification_userId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -6521,12 +6986,16 @@
                   },
                   "onDelete": "restrict",
                   "source": {
-                    "columns": ["userId"],
+                    "columns": [
+                      "userId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Order"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -6534,24 +7003,32 @@
               ],
               "indexes": [
                 {
-                  "columns": ["status"],
+                  "columns": [
+                    "status"
+                  ],
                   "name": "Order_status_idx_e98638ab",
                   "prefix": "Order_status_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["userId"],
+                  "columns": [
+                    "userId"
+                  ],
                   "name": "Order_userId_idx_a489d58a",
                   "prefix": "Order_userId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["orderNumber"]
+                  "columns": [
+                    "orderNumber"
+                  ]
                 }
               ]
             },
@@ -6623,16 +7100,22 @@
               "foreignKeys": [
                 {
                   "index": {
-                    "unique": ["orderId"]
+                    "unique": [
+                      "orderId"
+                    ]
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["orderId"],
+                    "columns": [
+                      "orderId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "OrderAddress"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Order"
                   }
@@ -6640,11 +7123,15 @@
               ],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["orderId"]
+                  "columns": [
+                    "orderId"
+                  ]
                 }
               ]
             },
@@ -6744,12 +7231,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["orderId"],
+                    "columns": [
+                      "orderId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "OrderItem"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Order"
                   }
@@ -6760,12 +7251,16 @@
                   },
                   "onDelete": "restrict",
                   "source": {
-                    "columns": ["variantId"],
+                    "columns": [
+                      "variantId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "OrderItem"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductVariant"
                   }
@@ -6773,20 +7268,26 @@
               ],
               "indexes": [
                 {
-                  "columns": ["orderId"],
+                  "columns": [
+                    "orderId"
+                  ],
                   "name": "OrderItem_orderId_idx_d284871b",
                   "prefix": "OrderItem_orderId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["variantId"],
+                  "columns": [
+                    "variantId"
+                  ],
                   "name": "OrderItem_variantId_idx_e16bb45d",
                   "prefix": "OrderItem_variantId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -6845,12 +7346,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["orderId"],
+                    "columns": [
+                      "orderId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "OrderStatusHistory"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Order"
                   }
@@ -6858,14 +7363,18 @@
               ],
               "indexes": [
                 {
-                  "columns": ["orderId"],
+                  "columns": [
+                    "orderId"
+                  ],
                   "name": "OrderStatusHistory_orderId_idx_d284871b",
                   "prefix": "OrderStatusHistory_orderId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -6970,12 +7479,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["orderId"],
+                    "columns": [
+                      "orderId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Payment"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Order"
                   }
@@ -6983,18 +7496,24 @@
               ],
               "indexes": [
                 {
-                  "columns": ["orderId"],
+                  "columns": [
+                    "orderId"
+                  ],
                   "name": "Payment_orderId_idx_d284871b",
                   "prefix": "Payment_orderId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["providerPaymentId"]
+                  "columns": [
+                    "providerPaymentId"
+                  ]
                 }
               ]
             },
@@ -7045,12 +7564,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["paymentId"],
+                    "columns": [
+                      "paymentId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "PaymentTransaction"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Payment"
                   }
@@ -7058,14 +7581,18 @@
               ],
               "indexes": [
                 {
-                  "columns": ["paymentId"],
+                  "columns": [
+                    "paymentId"
+                  ],
                   "name": "PaymentTransaction_paymentId_idx_b2fe9a10",
                   "prefix": "PaymentTransaction_paymentId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -7142,18 +7669,25 @@
               "foreignKeys": [],
               "indexes": [
                 {
-                  "columns": ["provider", "eventId"],
+                  "columns": [
+                    "provider",
+                    "eventId"
+                  ],
                   "name": "PaymentWebhookEvent_provider_eventId_idx_7ea8611e",
                   "prefix": "PaymentWebhookEvent_provider_eventId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["eventId"]
+                  "columns": [
+                    "eventId"
+                  ]
                 }
               ]
             },
@@ -7198,11 +7732,15 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["rid"]
+                "columns": [
+                  "rid"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["action"]
+                  "columns": [
+                    "action"
+                  ]
                 }
               ]
             },
@@ -7297,12 +7835,16 @@
                   },
                   "onDelete": "setNull",
                   "source": {
-                    "columns": ["brandId"],
+                    "columns": [
+                      "brandId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Product"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Brand"
                   }
@@ -7310,24 +7852,33 @@
               ],
               "indexes": [
                 {
-                  "columns": ["brandId"],
+                  "columns": [
+                    "brandId"
+                  ],
                   "name": "Product_brandId_idx_02e95397",
                   "prefix": "Product_brandId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["isActive", "isFeatured"],
+                  "columns": [
+                    "isActive",
+                    "isFeatured"
+                  ],
                   "name": "Product_isActive_isFeatured_idx_4e169837",
                   "prefix": "Product_isActive_isFeatured_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["slug"]
+                  "columns": [
+                    "slug"
+                  ]
                 }
               ]
             },
@@ -7368,12 +7919,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["productId"],
+                    "columns": [
+                      "productId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductAttribute"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Product"
                   }
@@ -7381,14 +7936,18 @@
               ],
               "indexes": [
                 {
-                  "columns": ["productId"],
+                  "columns": [
+                    "productId"
+                  ],
                   "name": "ProductAttribute_productId_idx_5858600a",
                   "prefix": "ProductAttribute_productId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -7422,12 +7981,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["attributeId"],
+                    "columns": [
+                      "attributeId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductAttributeValue"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductAttribute"
                   }
@@ -7438,12 +8001,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["variantId"],
+                    "columns": [
+                      "variantId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductAttributeValue"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductVariant"
                   }
@@ -7451,20 +8018,26 @@
               ],
               "indexes": [
                 {
-                  "columns": ["attributeId"],
+                  "columns": [
+                    "attributeId"
+                  ],
                   "name": "ProductAttributeValue_attributeId_idx_58ec5fae",
                   "prefix": "ProductAttributeValue_attributeId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["variantId"],
+                  "columns": [
+                    "variantId"
+                  ],
                   "name": "ProductAttributeValue_variantId_idx_e16bb45d",
                   "prefix": "ProductAttributeValue_variantId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -7488,12 +8061,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["productId"],
+                    "columns": [
+                      "productId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductCategory"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Product"
                   }
@@ -7504,12 +8081,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["categoryId"],
+                    "columns": [
+                      "categoryId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductCategory"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Category"
                   }
@@ -7517,20 +8098,27 @@
               ],
               "indexes": [
                 {
-                  "columns": ["categoryId"],
+                  "columns": [
+                    "categoryId"
+                  ],
                   "name": "ProductCategory_categoryId_idx_15c304f2",
                   "prefix": "ProductCategory_categoryId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["productId"],
+                  "columns": [
+                    "productId"
+                  ],
                   "name": "ProductCategory_productId_idx_5858600a",
                   "prefix": "ProductCategory_productId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["productId", "categoryId"]
+                "columns": [
+                  "productId",
+                  "categoryId"
+                ]
               },
               "uniques": []
             },
@@ -7585,12 +8173,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["productId"],
+                    "columns": [
+                      "productId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductImage"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Product"
                   }
@@ -7598,14 +8190,18 @@
               ],
               "indexes": [
                 {
-                  "columns": ["productId"],
+                  "columns": [
+                    "productId"
+                  ],
                   "name": "ProductImage_productId_idx_5858600a",
                   "prefix": "ProductImage_productId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -7700,12 +8296,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["productId"],
+                    "columns": [
+                      "productId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductVariant"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Product"
                   }
@@ -7713,18 +8313,24 @@
               ],
               "indexes": [
                 {
-                  "columns": ["productId"],
+                  "columns": [
+                    "productId"
+                  ],
                   "name": "ProductVariant_productId_idx_5858600a",
                   "prefix": "ProductVariant_productId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["sku"]
+                  "columns": [
+                    "sku"
+                  ]
                 }
               ]
             },
@@ -7821,7 +8427,9 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -7906,12 +8514,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["paymentId"],
+                    "columns": [
+                      "paymentId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Refund"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Payment"
                   }
@@ -7919,18 +8531,24 @@
               ],
               "indexes": [
                 {
-                  "columns": ["paymentId"],
+                  "columns": [
+                    "paymentId"
+                  ],
                   "name": "Refund_paymentId_idx_b2fe9a10",
                   "prefix": "Refund_paymentId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["providerRefundId"]
+                  "columns": [
+                    "providerRefundId"
+                  ]
                 }
               ]
             },
@@ -7976,12 +8594,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["returnRequestId"],
+                    "columns": [
+                      "returnRequestId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ReturnItem"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ReturnRequest"
                   }
@@ -7992,12 +8614,16 @@
                   },
                   "onDelete": "restrict",
                   "source": {
-                    "columns": ["variantId"],
+                    "columns": [
+                      "variantId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ReturnItem"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductVariant"
                   }
@@ -8005,20 +8631,26 @@
               ],
               "indexes": [
                 {
-                  "columns": ["returnRequestId"],
+                  "columns": [
+                    "returnRequestId"
+                  ],
                   "name": "ReturnItem_returnRequestId_idx_433faccd",
                   "prefix": "ReturnItem_returnRequestId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["variantId"],
+                  "columns": [
+                    "variantId"
+                  ],
                   "name": "ReturnItem_variantId_idx_e16bb45d",
                   "prefix": "ReturnItem_variantId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -8099,12 +8731,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["orderId"],
+                    "columns": [
+                      "orderId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ReturnRequest"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Order"
                   }
@@ -8115,12 +8751,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["userId"],
+                    "columns": [
+                      "userId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ReturnRequest"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -8128,20 +8768,26 @@
               ],
               "indexes": [
                 {
-                  "columns": ["orderId"],
+                  "columns": [
+                    "orderId"
+                  ],
                   "name": "ReturnRequest_orderId_idx_d284871b",
                   "prefix": "ReturnRequest_orderId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["userId"],
+                  "columns": [
+                    "userId"
+                  ],
                   "name": "ReturnRequest_userId_idx_a489d58a",
                   "prefix": "ReturnRequest_userId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -8223,12 +8869,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["productId"],
+                    "columns": [
+                      "productId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Review"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Product"
                   }
@@ -8239,12 +8889,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["userId"],
+                    "columns": [
+                      "userId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Review"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -8252,20 +8906,26 @@
               ],
               "indexes": [
                 {
-                  "columns": ["productId"],
+                  "columns": [
+                    "productId"
+                  ],
                   "name": "Review_productId_idx_5858600a",
                   "prefix": "Review_productId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["userId"],
+                  "columns": [
+                    "userId"
+                  ],
                   "name": "Review_userId_idx_a489d58a",
                   "prefix": "Review_userId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -8323,11 +8983,15 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["rid"]
+                "columns": [
+                  "rid"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["name"]
+                  "columns": [
+                    "name"
+                  ]
                 }
               ]
             },
@@ -8368,12 +9032,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["roleId"],
+                    "columns": [
+                      "roleId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "RolePermission"
                   },
                   "target": {
-                    "columns": ["rid"],
+                    "columns": [
+                      "rid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Role"
                   }
@@ -8384,12 +9052,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["permissionId"],
+                    "columns": [
+                      "permissionId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "RolePermission"
                   },
                   "target": {
-                    "columns": ["rid"],
+                    "columns": [
+                      "rid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Permission"
                   }
@@ -8397,24 +9069,33 @@
               ],
               "indexes": [
                 {
-                  "columns": ["permissionId"],
+                  "columns": [
+                    "permissionId"
+                  ],
                   "name": "RolePermission_permissionId_idx_f46fcdf5",
                   "prefix": "RolePermission_permissionId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["roleId"],
+                  "columns": [
+                    "roleId"
+                  ],
                   "name": "RolePermission_roleId_idx_ffccc9a4",
                   "prefix": "RolePermission_roleId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["roleId", "permissionId"]
+                  "columns": [
+                    "roleId",
+                    "permissionId"
+                  ]
                 }
               ]
             },
@@ -8498,12 +9179,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["orderId"],
+                    "columns": [
+                      "orderId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Shipment"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Order"
                   }
@@ -8514,12 +9199,16 @@
                   },
                   "onDelete": "setNull",
                   "source": {
-                    "columns": ["shippingMethodId"],
+                    "columns": [
+                      "shippingMethodId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Shipment"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ShippingMethod"
                   }
@@ -8527,24 +9216,32 @@
               ],
               "indexes": [
                 {
-                  "columns": ["orderId"],
+                  "columns": [
+                    "orderId"
+                  ],
                   "name": "Shipment_orderId_idx_d284871b",
                   "prefix": "Shipment_orderId_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["shippingMethodId"],
+                  "columns": [
+                    "shippingMethodId"
+                  ],
                   "name": "Shipment_shippingMethodId_idx_bd10075d",
                   "prefix": "Shipment_shippingMethodId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["trackingNumber"]
+                  "columns": [
+                    "trackingNumber"
+                  ]
                 }
               ]
             },
@@ -8595,12 +9292,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["shipmentId"],
+                    "columns": [
+                      "shipmentId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ShipmentTracking"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Shipment"
                   }
@@ -8608,14 +9309,18 @@
               ],
               "indexes": [
                 {
-                  "columns": ["shipmentId"],
+                  "columns": [
+                    "shipmentId"
+                  ],
                   "name": "ShipmentTracking_shipmentId_idx_e3606ec1",
                   "prefix": "ShipmentTracking_shipmentId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -8670,7 +9375,9 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -8733,12 +9440,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["variantId"],
+                    "columns": [
+                      "variantId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "StockReservation"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "ProductVariant"
                   }
@@ -8746,20 +9457,27 @@
               ],
               "indexes": [
                 {
-                  "columns": ["expiresAt", "isSettled"],
+                  "columns": [
+                    "expiresAt",
+                    "isSettled"
+                  ],
                   "name": "StockReservation_expiresAt_isSettled_idx_0bcba05c",
                   "prefix": "StockReservation_expiresAt_isSettled_idx",
                   "unique": false
                 },
                 {
-                  "columns": ["variantId"],
+                  "columns": [
+                    "variantId"
+                  ],
                   "name": "StockReservation_variantId_idx_e16bb45d",
                   "prefix": "StockReservation_variantId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": []
             },
@@ -8842,14 +9560,20 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["uid"]
+                "columns": [
+                  "uid"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["email"]
+                  "columns": [
+                    "email"
+                  ]
                 },
                 {
-                  "columns": ["phoneNumber"]
+                  "columns": [
+                    "phoneNumber"
+                  ]
                 }
               ]
             },
@@ -8908,11 +9632,15 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["code"]
+                  "columns": [
+                    "code"
+                  ]
                 }
               ]
             },
@@ -8952,16 +9680,22 @@
               "foreignKeys": [
                 {
                   "index": {
-                    "unique": ["userId"]
+                    "unique": [
+                      "userId"
+                    ]
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["userId"],
+                    "columns": [
+                      "userId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Wishlist"
                   },
                   "target": {
-                    "columns": ["uid"],
+                    "columns": [
+                      "uid"
+                    ],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -8969,11 +9703,15 @@
               ],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["userId"]
+                  "columns": [
+                    "userId"
+                  ]
                 }
               ]
             },
@@ -9014,12 +9752,16 @@
                   },
                   "onDelete": "cascade",
                   "source": {
-                    "columns": ["wishlistId"],
+                    "columns": [
+                      "wishlistId"
+                    ],
                     "namespaceId": "public",
                     "tableName": "WishlistItem"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": [
+                      "id"
+                    ],
                     "namespaceId": "public",
                     "tableName": "Wishlist"
                   }
@@ -9027,18 +9769,25 @@
               ],
               "indexes": [
                 {
-                  "columns": ["wishlistId"],
+                  "columns": [
+                    "wishlistId"
+                  ],
                   "name": "WishlistItem_wishlistId_idx_52926058",
                   "prefix": "WishlistItem_wishlistId_idx",
                   "unique": false
                 }
               ],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": [
+                  "id"
+                ]
               },
               "uniques": [
                 {
-                  "columns": ["wishlistId", "productId"]
+                  "columns": [
+                    "wishlistId",
+                    "productId"
+                  ]
                 }
               ]
             }
@@ -9046,11 +9795,21 @@
           "valueSet": {
             "DiscountType": {
               "kind": "valueSet",
-              "values": ["PERCENTAGE", "FIXED_AMOUNT"]
+              "values": [
+                "PERCENTAGE",
+                "FIXED_AMOUNT"
+              ]
             },
             "InventoryMovementType": {
               "kind": "valueSet",
-              "values": ["RESTOCK", "RESERVATION", "RELEASE", "SALE", "RETURN", "ADJUSTMENT"]
+              "values": [
+                "RESTOCK",
+                "RESERVATION",
+                "RELEASE",
+                "SALE",
+                "RETURN",
+                "ADJUSTMENT"
+              ]
             },
             "OrderStatus": {
               "kind": "valueSet",
@@ -9069,7 +9828,11 @@
             },
             "PaymentProvider": {
               "kind": "valueSet",
-              "values": ["RAZORPAY", "STRIPE", "CASH_ON_DELIVERY"]
+              "values": [
+                "RAZORPAY",
+                "STRIPE",
+                "CASH_ON_DELIVERY"
+              ]
             },
             "PaymentStatus": {
               "kind": "valueSet",
@@ -9084,7 +9847,14 @@
             },
             "ReturnStatus": {
               "kind": "valueSet",
-              "values": ["REQUESTED", "APPROVED", "REJECTED", "RECEIVED", "REFUNDED", "CANCELLED"]
+              "values": [
+                "REQUESTED",
+                "APPROVED",
+                "REJECTED",
+                "RECEIVED",
+                "REFUNDED",
+                "CANCELLED"
+              ]
             },
             "RoleName": {
               "kind": "valueSet",

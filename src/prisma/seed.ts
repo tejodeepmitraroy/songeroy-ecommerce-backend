@@ -1,8 +1,11 @@
 import 'dotenv/config';
-import { PrismaClient, RoleName } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import { db } from './db.js';
 
 const prisma = new PrismaClient();
+
+const RoleName = Prisma.RoleName;
 
 const ENUMS_TO_ENSURE = [
   {
@@ -54,7 +57,7 @@ const ENUMS_TO_ENSURE = [
   },
 ];
 
-const ROLES: { name: RoleName; description: string }[] = [
+const ROLES: { name: typeof RoleName; description: string }[] = [
   {
     name: RoleName.SUPER_ADMIN,
     description: 'Super Administrator with unrestricted access across all systems and domains',
@@ -166,7 +169,7 @@ export async function seed() {
 
   // 2. Seed Roles
   console.log('2. Seeding roles...');
-  const roleMap = new Map<RoleName, string>();
+  const roleMap = new Map<Prisma.RoleName, string>();
 
   for (const r of ROLES) {
     const role = await prisma.role.upsert({
@@ -200,7 +203,7 @@ export async function seed() {
 
   // 4. Assign Permissions to Roles
   console.log('4. Linking role permissions...');
-  const superAdminRoleId = roleMap.get(RoleName.SUPER_ADMIN);
+  const superAdminRoleId = roleMap.get(RoleName);
   if (superAdminRoleId) {
     for (const permId of permissionMap.values()) {
       await prisma.rolePermission.upsert({

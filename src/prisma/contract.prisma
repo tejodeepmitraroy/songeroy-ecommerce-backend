@@ -124,7 +124,7 @@ model Employee {
   lastName        String?
   isEmailVerified Boolean        @default(false)
   isActive        Boolean        @default(true)
-  refreshTokens   String
+  refreshTokens   String?
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @onCreate(now()) @onUpdate(now())
   employeeRoles   EmployeeRole[]
@@ -154,32 +154,6 @@ model Role {
   updatedAt       DateTime         @onCreate(now()) @onUpdate(now())
 
   employeeRoles   EmployeeRole[]
-  rolePermissions RolePermission[]
-}
-
-model RolePermission {
-  id           String     @id @onCreate(uuid())
-  roleId       Int
-  permissionId String
-  createdAt    DateTime   @default(now())
-
-  role         Role       @relation(fields: [roleId], references: [rid], onDelete: Cascade)
-  permission   Permission @relation(fields: [permissionId], references: [rid], onDelete: Cascade)
-
-  @@unique([roleId, permissionId])
-  @@index([roleId])
-  @@index([permissionId])
-}
-
-model Permission {
-  rid             String           @id @onCreate(uuid())
-  action          String // e.g. "products:create", "orders:read"
-  description     String?
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @onCreate(now()) @onUpdate(now())
-  rolePermissions RolePermission[]
-
-  @@unique([action])
 }
 
 // ----------------------------------------------------

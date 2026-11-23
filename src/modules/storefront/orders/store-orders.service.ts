@@ -4,7 +4,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { OrderStatus } from '@prisma/client';
+// import { OrderStatus } from '@prisma/client';
 
 import { PrismaService } from '../../../database/prisma/prisma.service.js';
 import type { CreateOrderDto } from './dto/create-order.dto.js';
@@ -14,7 +14,7 @@ export class StoreOrdersService {
   constructor(private readonly prisma: PrismaService) {}
 
   async createOrder(userId: string, dto: CreateOrderDto) {
-    const cart = await this.prisma.cart.findUnique({
+    const cart = await this.prisma.cartz.findUnique({
       where: { userId },
       include: {
         items: {
