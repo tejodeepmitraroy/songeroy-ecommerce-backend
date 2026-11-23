@@ -32,6 +32,14 @@
       "model": "CouponUsage",
       "namespace": "public"
     },
+    "Employee": {
+      "model": "Employee",
+      "namespace": "public"
+    },
+    "EmployeeRole": {
+      "model": "EmployeeRole",
+      "namespace": "public"
+    },
     "Inventory": {
       "model": "Inventory",
       "namespace": "public"
@@ -104,10 +112,6 @@
       "model": "Promotion",
       "namespace": "public"
     },
-    "RefreshToken": {
-      "model": "RefreshToken",
-      "namespace": "public"
-    },
     "Refund": {
       "model": "Refund",
       "namespace": "public"
@@ -150,10 +154,6 @@
     },
     "User": {
       "model": "User",
-      "namespace": "public"
-    },
-    "UserRole": {
-      "model": "UserRole",
       "namespace": "public"
     },
     "Warehouse": {
@@ -476,7 +476,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["userId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["uid"]
                 },
                 "to": {
                   "model": "User",
@@ -693,7 +693,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["userId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["uid"]
                 },
                 "to": {
                   "model": "User",
@@ -1226,7 +1226,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["userId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["uid"]
                 },
                 "to": {
                   "model": "User",
@@ -1254,6 +1254,214 @@
               },
               "namespaceId": "public",
               "table": "CouponUsage"
+            }
+          },
+          "Employee": {
+            "fields": {
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "email": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "firstName": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "isActive": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "isEmailVerified": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "lastName": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "passwordHash": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "refreshTokens": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "uid": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "updatedAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              }
+            },
+            "relations": {
+              "employeeRoles": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": ["uid"],
+                  "targetFields": ["employeeId"]
+                },
+                "to": {
+                  "model": "EmployeeRole",
+                  "namespace": "public"
+                }
+              }
+            },
+            "storage": {
+              "fields": {
+                "createdAt": {
+                  "column": "createdAt"
+                },
+                "email": {
+                  "column": "email"
+                },
+                "firstName": {
+                  "column": "firstName"
+                },
+                "isActive": {
+                  "column": "isActive"
+                },
+                "isEmailVerified": {
+                  "column": "isEmailVerified"
+                },
+                "lastName": {
+                  "column": "lastName"
+                },
+                "passwordHash": {
+                  "column": "passwordHash"
+                },
+                "refreshTokens": {
+                  "column": "refreshTokens"
+                },
+                "uid": {
+                  "column": "uid"
+                },
+                "updatedAt": {
+                  "column": "updatedAt"
+                }
+              },
+              "namespaceId": "public",
+              "table": "Employee"
+            }
+          },
+          "EmployeeRole": {
+            "fields": {
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "employeeId": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "roleId": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {
+              "employee": {
+                "cardinality": "N:1",
+                "nullable": false,
+                "on": {
+                  "localFields": ["employeeId"],
+                  "targetFields": ["uid"]
+                },
+                "to": {
+                  "model": "Employee",
+                  "namespace": "public"
+                }
+              },
+              "role": {
+                "cardinality": "N:1",
+                "nullable": false,
+                "on": {
+                  "localFields": ["roleId"],
+                  "targetFields": ["rid"]
+                },
+                "to": {
+                  "model": "Role",
+                  "namespace": "public"
+                }
+              }
+            },
+            "storage": {
+              "fields": {
+                "createdAt": {
+                  "column": "createdAt"
+                },
+                "employeeId": {
+                  "column": "employeeId"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "roleId": {
+                  "column": "roleId"
+                }
+              },
+              "namespaceId": "public",
+              "table": "EmployeeRole"
             }
           },
           "Inventory": {
@@ -1536,7 +1744,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["userId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["uid"]
                 },
                 "to": {
                   "model": "User",
@@ -1768,7 +1976,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["userId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["uid"]
                 },
                 "to": {
                   "model": "User",
@@ -2581,7 +2789,7 @@
                   "kind": "scalar"
                 }
               },
-              "id": {
+              "rid": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
@@ -2603,7 +2811,7 @@
               "rolePermissions": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["rid"],
                   "targetFields": ["permissionId"]
                 },
                 "to": {
@@ -2623,8 +2831,8 @@
                 "description": {
                   "column": "description"
                 },
-                "id": {
-                  "column": "id"
+                "rid": {
+                  "column": "rid"
                 },
                 "updatedAt": {
                   "column": "updatedAt"
@@ -3477,109 +3685,6 @@
               "table": "Promotion"
             }
           },
-          "RefreshToken": {
-            "fields": {
-              "createdAt": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/timestamptz-date@1",
-                  "kind": "scalar",
-                  "typeParams": {
-                    "precision": 3
-                  }
-                }
-              },
-              "expiresAt": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/timestamptz-date@1",
-                  "kind": "scalar",
-                  "typeParams": {
-                    "precision": 3
-                  }
-                }
-              },
-              "id": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              },
-              "isRevoked": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/bool@1",
-                  "kind": "scalar"
-                }
-              },
-              "tokenHash": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              },
-              "updatedAt": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/timestamptz-date@1",
-                  "kind": "scalar",
-                  "typeParams": {
-                    "precision": 3
-                  }
-                }
-              },
-              "userId": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              }
-            },
-            "relations": {
-              "user": {
-                "cardinality": "N:1",
-                "nullable": false,
-                "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["id"]
-                },
-                "to": {
-                  "model": "User",
-                  "namespace": "public"
-                }
-              }
-            },
-            "storage": {
-              "fields": {
-                "createdAt": {
-                  "column": "createdAt"
-                },
-                "expiresAt": {
-                  "column": "expiresAt"
-                },
-                "id": {
-                  "column": "id"
-                },
-                "isRevoked": {
-                  "column": "isRevoked"
-                },
-                "tokenHash": {
-                  "column": "tokenHash"
-                },
-                "updatedAt": {
-                  "column": "updatedAt"
-                },
-                "userId": {
-                  "column": "userId"
-                }
-              },
-              "namespaceId": "public",
-              "table": "RefreshToken"
-            }
-          },
           "Refund": {
             "fields": {
               "amount": {
@@ -3889,7 +3994,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["userId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["uid"]
                 },
                 "to": {
                   "model": "User",
@@ -4025,7 +4130,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["userId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["uid"]
                 },
                 "to": {
                   "model": "User",
@@ -4089,13 +4194,6 @@
                   "kind": "scalar"
                 }
               },
-              "id": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              },
               "name": {
                 "nullable": false,
                 "type": {
@@ -4107,6 +4205,13 @@
                   "entityName": "RoleName",
                   "namespaceId": "public",
                   "plane": "domain"
+                }
+              },
+              "rid": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
                 }
               },
               "updatedAt": {
@@ -4121,25 +4226,25 @@
               }
             },
             "relations": {
+              "employeeRoles": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": ["rid"],
+                  "targetFields": ["roleId"]
+                },
+                "to": {
+                  "model": "EmployeeRole",
+                  "namespace": "public"
+                }
+              },
               "rolePermissions": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["rid"],
                   "targetFields": ["roleId"]
                 },
                 "to": {
                   "model": "RolePermission",
-                  "namespace": "public"
-                }
-              },
-              "userRoles": {
-                "cardinality": "1:N",
-                "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["roleId"]
-                },
-                "to": {
-                  "model": "UserRole",
                   "namespace": "public"
                 }
               }
@@ -4152,11 +4257,11 @@
                 "description": {
                   "column": "description"
                 },
-                "id": {
-                  "column": "id"
-                },
                 "name": {
                   "column": "name"
+                },
+                "rid": {
+                  "column": "rid"
                 },
                 "updatedAt": {
                   "column": "updatedAt"
@@ -4195,7 +4300,7 @@
               "roleId": {
                 "nullable": false,
                 "type": {
-                  "codecId": "pg/text@1",
+                  "codecId": "pg/int4@1",
                   "kind": "scalar"
                 }
               }
@@ -4206,7 +4311,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["permissionId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["rid"]
                 },
                 "to": {
                   "model": "Permission",
@@ -4218,7 +4323,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["roleId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["rid"]
                 },
                 "to": {
                   "model": "Role",
@@ -4707,13 +4812,6 @@
                   "kind": "scalar"
                 }
               },
-              "id": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              },
               "isActive": {
                 "nullable": false,
                 "type": {
@@ -4749,6 +4847,20 @@
                   "kind": "scalar"
                 }
               },
+              "refreshTokens": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "uid": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
               "updatedAt": {
                 "nullable": false,
                 "type": {
@@ -4764,7 +4876,7 @@
               "addresses": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["uid"],
                   "targetFields": ["userId"]
                 },
                 "to": {
@@ -4776,7 +4888,7 @@
                 "cardinality": "1:1",
                 "nullable": true,
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["uid"],
                   "targetFields": ["userId"]
                 },
                 "to": {
@@ -4787,7 +4899,7 @@
               "couponUsages": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["uid"],
                   "targetFields": ["userId"]
                 },
                 "to": {
@@ -4798,7 +4910,7 @@
               "notifications": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["uid"],
                   "targetFields": ["userId"]
                 },
                 "to": {
@@ -4809,7 +4921,7 @@
               "orders": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["uid"],
                   "targetFields": ["userId"]
                 },
                 "to": {
@@ -4817,21 +4929,10 @@
                   "namespace": "public"
                 }
               },
-              "refreshTokens": {
-                "cardinality": "1:N",
-                "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["userId"]
-                },
-                "to": {
-                  "model": "RefreshToken",
-                  "namespace": "public"
-                }
-              },
               "returnRequests": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["uid"],
                   "targetFields": ["userId"]
                 },
                 "to": {
@@ -4842,7 +4943,7 @@
               "reviews": {
                 "cardinality": "1:N",
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["uid"],
                   "targetFields": ["userId"]
                 },
                 "to": {
@@ -4850,22 +4951,11 @@
                   "namespace": "public"
                 }
               },
-              "userRoles": {
-                "cardinality": "1:N",
-                "on": {
-                  "localFields": ["id"],
-                  "targetFields": ["userId"]
-                },
-                "to": {
-                  "model": "UserRole",
-                  "namespace": "public"
-                }
-              },
               "wishlist": {
                 "cardinality": "1:1",
                 "nullable": true,
                 "on": {
-                  "localFields": ["id"],
+                  "localFields": ["uid"],
                   "targetFields": ["userId"]
                 },
                 "to": {
@@ -4885,9 +4975,6 @@
                 "firstName": {
                   "column": "firstName"
                 },
-                "id": {
-                  "column": "id"
-                },
                 "isActive": {
                   "column": "isActive"
                 },
@@ -4903,91 +4990,18 @@
                 "phoneNumber": {
                   "column": "phoneNumber"
                 },
+                "refreshTokens": {
+                  "column": "refreshTokens"
+                },
+                "uid": {
+                  "column": "uid"
+                },
                 "updatedAt": {
                   "column": "updatedAt"
                 }
               },
               "namespaceId": "public",
               "table": "User"
-            }
-          },
-          "UserRole": {
-            "fields": {
-              "createdAt": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/timestamptz-date@1",
-                  "kind": "scalar",
-                  "typeParams": {
-                    "precision": 3
-                  }
-                }
-              },
-              "id": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              },
-              "roleId": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              },
-              "userId": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              }
-            },
-            "relations": {
-              "role": {
-                "cardinality": "N:1",
-                "nullable": false,
-                "on": {
-                  "localFields": ["roleId"],
-                  "targetFields": ["id"]
-                },
-                "to": {
-                  "model": "Role",
-                  "namespace": "public"
-                }
-              },
-              "user": {
-                "cardinality": "N:1",
-                "nullable": false,
-                "on": {
-                  "localFields": ["userId"],
-                  "targetFields": ["id"]
-                },
-                "to": {
-                  "model": "User",
-                  "namespace": "public"
-                }
-              }
-            },
-            "storage": {
-              "fields": {
-                "createdAt": {
-                  "column": "createdAt"
-                },
-                "id": {
-                  "column": "id"
-                },
-                "roleId": {
-                  "column": "roleId"
-                },
-                "userId": {
-                  "column": "userId"
-                }
-              },
-              "namespaceId": "public",
-              "table": "UserRole"
             }
           },
           "Warehouse": {
@@ -5143,7 +5157,7 @@
                 "nullable": false,
                 "on": {
                   "localFields": ["userId"],
-                  "targetFields": ["id"]
+                  "targetFields": ["uid"]
                 },
                 "to": {
                   "model": "User",
@@ -5344,7 +5358,7 @@
                     "tableName": "Address"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["uid"],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -5476,7 +5490,7 @@
                     "tableName": "Cart"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["uid"],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -5898,7 +5912,7 @@
                     "tableName": "CouponUsage"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["uid"],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -5922,6 +5936,175 @@
                 "columns": ["id"]
               },
               "uniques": []
+            },
+            "Employee": {
+              "columns": {
+                "createdAt": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": false,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "email": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "firstName": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "isActive": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "default": {
+                    "kind": "literal",
+                    "value": true
+                  },
+                  "nullable": false
+                },
+                "isEmailVerified": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "default": {
+                    "kind": "literal",
+                    "value": false
+                  },
+                  "nullable": false
+                },
+                "lastName": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "passwordHash": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "refreshTokens": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "uid": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "updatedAt": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": false,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [],
+              "primaryKey": {
+                "columns": ["uid"]
+              },
+              "uniques": [
+                {
+                  "columns": ["email"]
+                }
+              ]
+            },
+            "EmployeeRole": {
+              "columns": {
+                "createdAt": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": false,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "employeeId": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "id": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "roleId": {
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [
+                {
+                  "index": {
+                    "name": "EmployeeRole_employeeId_idx_087dd4a6"
+                  },
+                  "onDelete": "cascade",
+                  "source": {
+                    "columns": ["employeeId"],
+                    "namespaceId": "public",
+                    "tableName": "EmployeeRole"
+                  },
+                  "target": {
+                    "columns": ["uid"],
+                    "namespaceId": "public",
+                    "tableName": "Employee"
+                  }
+                },
+                {
+                  "index": {
+                    "name": "EmployeeRole_roleId_idx_ffccc9a4"
+                  },
+                  "onDelete": "cascade",
+                  "source": {
+                    "columns": ["roleId"],
+                    "namespaceId": "public",
+                    "tableName": "EmployeeRole"
+                  },
+                  "target": {
+                    "columns": ["rid"],
+                    "namespaceId": "public",
+                    "tableName": "Role"
+                  }
+                }
+              ],
+              "indexes": [
+                {
+                  "columns": ["employeeId"],
+                  "name": "EmployeeRole_employeeId_idx_087dd4a6",
+                  "prefix": "EmployeeRole_employeeId_idx",
+                  "unique": false
+                },
+                {
+                  "columns": ["roleId"],
+                  "name": "EmployeeRole_roleId_idx_ffccc9a4",
+                  "prefix": "EmployeeRole_roleId_idx",
+                  "unique": false
+                }
+              ],
+              "primaryKey": {
+                "columns": ["id"]
+              },
+              "uniques": [
+                {
+                  "columns": ["employeeId", "roleId"]
+                }
+              ]
             },
             "Inventory": {
               "columns": {
@@ -6181,7 +6364,7 @@
                     "tableName": "Notification"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["uid"],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -6343,7 +6526,7 @@
                     "tableName": "Order"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["uid"],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -6998,7 +7181,7 @@
                   "dataType": "pg/text",
                   "nullable": true
                 },
-                "id": {
+                "rid": {
                   "codecId": "pg/text@1",
                   "dataType": "pg/text",
                   "nullable": false
@@ -7015,7 +7198,7 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": ["rid"]
               },
               "uniques": [
                 {
@@ -7642,96 +7825,6 @@
               },
               "uniques": []
             },
-            "RefreshToken": {
-              "columns": {
-                "createdAt": {
-                  "codecId": "pg/timestamptz-date@1",
-                  "dataType": "pg/timestamptz",
-                  "default": {
-                    "expression": "now()",
-                    "kind": "function"
-                  },
-                  "nullable": false,
-                  "typeParams": {
-                    "precision": 3
-                  }
-                },
-                "expiresAt": {
-                  "codecId": "pg/timestamptz-date@1",
-                  "dataType": "pg/timestamptz",
-                  "nullable": false,
-                  "typeParams": {
-                    "precision": 3
-                  }
-                },
-                "id": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                },
-                "isRevoked": {
-                  "codecId": "pg/bool@1",
-                  "dataType": "pg/bool",
-                  "default": {
-                    "kind": "literal",
-                    "value": false
-                  },
-                  "nullable": false
-                },
-                "tokenHash": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                },
-                "updatedAt": {
-                  "codecId": "pg/timestamptz-date@1",
-                  "dataType": "pg/timestamptz",
-                  "nullable": false,
-                  "typeParams": {
-                    "precision": 3
-                  }
-                },
-                "userId": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                }
-              },
-              "foreignKeys": [
-                {
-                  "index": {
-                    "name": "RefreshToken_userId_idx_a489d58a"
-                  },
-                  "onDelete": "cascade",
-                  "source": {
-                    "columns": ["userId"],
-                    "namespaceId": "public",
-                    "tableName": "RefreshToken"
-                  },
-                  "target": {
-                    "columns": ["id"],
-                    "namespaceId": "public",
-                    "tableName": "User"
-                  }
-                }
-              ],
-              "indexes": [
-                {
-                  "columns": ["userId"],
-                  "name": "RefreshToken_userId_idx_a489d58a",
-                  "prefix": "RefreshToken_userId_idx",
-                  "unique": false
-                }
-              ],
-              "primaryKey": {
-                "columns": ["id"]
-              },
-              "uniques": [
-                {
-                  "columns": ["tokenHash"]
-                }
-              ]
-            },
             "Refund": {
               "checks": [
                 {
@@ -8027,7 +8120,7 @@
                     "tableName": "ReturnRequest"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["uid"],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -8151,7 +8244,7 @@
                     "tableName": "Review"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["uid"],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -8202,11 +8295,6 @@
                   "dataType": "pg/text",
                   "nullable": true
                 },
-                "id": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                },
                 "name": {
                   "codecId": "pg/text@1",
                   "dataType": "pg/text",
@@ -8217,6 +8305,11 @@
                     "namespaceId": "public",
                     "plane": "storage"
                   }
+                },
+                "rid": {
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
+                  "nullable": false
                 },
                 "updatedAt": {
                   "codecId": "pg/timestamptz-date@1",
@@ -8230,7 +8323,7 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": ["rid"]
               },
               "uniques": [
                 {
@@ -8263,8 +8356,8 @@
                   "nullable": false
                 },
                 "roleId": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
                   "nullable": false
                 }
               },
@@ -8280,7 +8373,7 @@
                     "tableName": "RolePermission"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["rid"],
                     "namespaceId": "public",
                     "tableName": "Role"
                   }
@@ -8296,7 +8389,7 @@
                     "tableName": "RolePermission"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["rid"],
                     "namespaceId": "public",
                     "tableName": "Permission"
                   }
@@ -8694,11 +8787,6 @@
                   "dataType": "pg/text",
                   "nullable": true
                 },
-                "id": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                },
                 "isActive": {
                   "codecId": "pg/bool@1",
                   "dataType": "pg/bool",
@@ -8732,6 +8820,16 @@
                   "dataType": "pg/text",
                   "nullable": true
                 },
+                "refreshTokens": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "uid": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
                 "updatedAt": {
                   "codecId": "pg/timestamptz-date@1",
                   "dataType": "pg/timestamptz",
@@ -8744,7 +8842,7 @@
               "foreignKeys": [],
               "indexes": [],
               "primaryKey": {
-                "columns": ["id"]
+                "columns": ["uid"]
               },
               "uniques": [
                 {
@@ -8752,93 +8850,6 @@
                 },
                 {
                   "columns": ["phoneNumber"]
-                }
-              ]
-            },
-            "UserRole": {
-              "columns": {
-                "createdAt": {
-                  "codecId": "pg/timestamptz-date@1",
-                  "dataType": "pg/timestamptz",
-                  "default": {
-                    "expression": "now()",
-                    "kind": "function"
-                  },
-                  "nullable": false,
-                  "typeParams": {
-                    "precision": 3
-                  }
-                },
-                "id": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                },
-                "roleId": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                },
-                "userId": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                }
-              },
-              "foreignKeys": [
-                {
-                  "index": {
-                    "name": "UserRole_userId_idx_a489d58a"
-                  },
-                  "onDelete": "cascade",
-                  "source": {
-                    "columns": ["userId"],
-                    "namespaceId": "public",
-                    "tableName": "UserRole"
-                  },
-                  "target": {
-                    "columns": ["id"],
-                    "namespaceId": "public",
-                    "tableName": "User"
-                  }
-                },
-                {
-                  "index": {
-                    "name": "UserRole_roleId_idx_ffccc9a4"
-                  },
-                  "onDelete": "cascade",
-                  "source": {
-                    "columns": ["roleId"],
-                    "namespaceId": "public",
-                    "tableName": "UserRole"
-                  },
-                  "target": {
-                    "columns": ["id"],
-                    "namespaceId": "public",
-                    "tableName": "Role"
-                  }
-                }
-              ],
-              "indexes": [
-                {
-                  "columns": ["roleId"],
-                  "name": "UserRole_roleId_idx_ffccc9a4",
-                  "prefix": "UserRole_roleId_idx",
-                  "unique": false
-                },
-                {
-                  "columns": ["userId"],
-                  "name": "UserRole_userId_idx_a489d58a",
-                  "prefix": "UserRole_userId_idx",
-                  "unique": false
-                }
-              ],
-              "primaryKey": {
-                "columns": ["id"]
-              },
-              "uniques": [
-                {
-                  "columns": ["userId", "roleId"]
                 }
               ]
             },
@@ -8950,7 +8961,7 @@
                     "tableName": "Wishlist"
                   },
                   "target": {
-                    "columns": ["id"],
+                    "columns": ["uid"],
                     "namespaceId": "public",
                     "tableName": "User"
                   }
@@ -9093,10 +9104,10 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "362f4fac90564d7387589c7ccf5da93301087d23ffb44e287eb0a66305ae7276"
+    "storageHash": "57f40a605ab32584adb96df066f6b45086cabb0b9426a9f4abb496e38bbe43c8"
   },
   "execution": {
-    "executionHash": "d8caa9567bf20e20aa6385a88f9f21e84448273e2e8460660dafe51106bd1aff",
+    "executionHash": "c74a19077c7d091451bc1038ff22a9608f93f51c1959bfbcc5a3713e84169f4d",
     "mutations": {
       "defaults": [
         {
@@ -9308,6 +9319,49 @@
             "kind": "generator"
           },
           "ref": {
+            "entry": "Employee",
+            "field": "uid",
+            "namespace": "public"
+          }
+        },
+        {
+          "onCreate": {
+            "id": "timestampNow",
+            "kind": "generator",
+            "params": {
+              "precision": 3
+            }
+          },
+          "onUpdate": {
+            "id": "timestampNow",
+            "kind": "generator",
+            "params": {
+              "precision": 3
+            }
+          },
+          "ref": {
+            "entry": "Employee",
+            "field": "updatedAt",
+            "namespace": "public"
+          }
+        },
+        {
+          "onCreate": {
+            "id": "uuidv4",
+            "kind": "generator"
+          },
+          "ref": {
+            "entry": "EmployeeRole",
+            "field": "id",
+            "namespace": "public"
+          }
+        },
+        {
+          "onCreate": {
+            "id": "uuidv4",
+            "kind": "generator"
+          },
+          "ref": {
             "entry": "Inventory",
             "field": "id",
             "namespace": "public"
@@ -9482,7 +9536,7 @@
           },
           "ref": {
             "entry": "Permission",
-            "field": "id",
+            "field": "rid",
             "namespace": "public"
           }
         },
@@ -9642,38 +9696,6 @@
             "kind": "generator"
           },
           "ref": {
-            "entry": "RefreshToken",
-            "field": "id",
-            "namespace": "public"
-          }
-        },
-        {
-          "onCreate": {
-            "id": "timestampNow",
-            "kind": "generator",
-            "params": {
-              "precision": 3
-            }
-          },
-          "onUpdate": {
-            "id": "timestampNow",
-            "kind": "generator",
-            "params": {
-              "precision": 3
-            }
-          },
-          "ref": {
-            "entry": "RefreshToken",
-            "field": "updatedAt",
-            "namespace": "public"
-          }
-        },
-        {
-          "onCreate": {
-            "id": "uuidv4",
-            "kind": "generator"
-          },
-          "ref": {
             "entry": "Refund",
             "field": "id",
             "namespace": "public"
@@ -9772,17 +9794,6 @@
           "ref": {
             "entry": "Review",
             "field": "updatedAt",
-            "namespace": "public"
-          }
-        },
-        {
-          "onCreate": {
-            "id": "uuidv4",
-            "kind": "generator"
-          },
-          "ref": {
-            "entry": "Role",
-            "field": "id",
             "namespace": "public"
           }
         },
@@ -9890,7 +9901,7 @@
           },
           "ref": {
             "entry": "User",
-            "field": "id",
+            "field": "uid",
             "namespace": "public"
           }
         },
@@ -9912,17 +9923,6 @@
           "ref": {
             "entry": "User",
             "field": "updatedAt",
-            "namespace": "public"
-          }
-        },
-        {
-          "onCreate": {
-            "id": "uuidv4",
-            "kind": "generator"
-          },
-          "ref": {
-            "entry": "UserRole",
-            "field": "id",
             "namespace": "public"
           }
         },

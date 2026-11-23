@@ -12,6 +12,7 @@ export default tseslint.config(
       '.yarn/**',
       'generated/**',
       'src/prisma/**',
+      'migrations',
     ],
   },
 

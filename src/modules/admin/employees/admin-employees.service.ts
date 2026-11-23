@@ -43,7 +43,7 @@ export class AdminEmployeesService {
   async register(dto: RegisterEmployeeDto) {
     const email = dto.email.toLowerCase();
 
-    const existingEmail = await this.prisma.user.findUnique({
+    const existingEmail = await this.prisma.employee.findUnique({
       where: { email },
     });
     if (existingEmail) {

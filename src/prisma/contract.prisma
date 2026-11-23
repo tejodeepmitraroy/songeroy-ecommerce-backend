@@ -1,10 +1,8 @@
 // use prisma-8
 
-
 // ----------------------------------------------------
 // ENUMS
 // ----------------------------------------------------
-
 enum RoleName {
   SUPER_ADMIN
   ADMIN
@@ -69,83 +67,30 @@ enum ReturnStatus {
 // ----------------------------------------------------
 // USER MANAGEMENT
 // ----------------------------------------------------
-
 model User {
-  id              String   @id @onCreate(uuid())
-  email           String   @unique
+  uid             String          @id @onCreate(uuid())
+  email           String          @unique
   passwordHash    String?
   firstName       String?
   lastName        String?
-  phoneNumber     String?  @unique
-  isEmailVerified Boolean  @default(false)
-  isActive        Boolean  @default(true)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @onCreate(now()) @onUpdate(now())
+  phoneNumber     String?         @unique
+  isEmailVerified Boolean         @default(false)
+  isActive        Boolean         @default(true)
+  refreshTokens   String
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @onCreate(now()) @onUpdate(now())
 
-  userRoles      UserRole[]
-  addresses      Address[]
-  refreshTokens  RefreshToken[]
-  orders         Order[]
-  cart           Cart?
-  wishlist       Wishlist?
-  reviews        Review[]
-  returnRequests ReturnRequest[]
-  notifications  Notification[]
-  couponUsages   CouponUsage[]
+  addresses       Address[]
+  orders          Order[]
+  cart            Cart?
+  wishlist        Wishlist?
+  reviews         Review[]
+  returnRequests  ReturnRequest[]
+  notifications   Notification[]
+  couponUsages    CouponUsage[]
 
   @@index([email])
   @@index([phoneNumber])
-}
-
-model Role {
-  id          String   @id @onCreate(uuid())
-  name        RoleName @unique
-  description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @onCreate(now()) @onUpdate(now())
-
-  userRoles       UserRole[]
-  rolePermissions RolePermission[]
-}
-
-model Permission {
-  id          String   @id @onCreate(uuid())
-  action      String // e.g. "products:create", "orders:read"
-  description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @onCreate(now()) @onUpdate(now())
-
-  rolePermissions RolePermission[]
-
-  @@unique([action])
-}
-
-model UserRole {
-  id        String   @id @onCreate(uuid())
-  userId    String
-  roleId    String
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, roleId])
-  @@index([userId])
-  @@index([roleId])
-}
-
-model RolePermission {
-  id           String   @id @onCreate(uuid())
-  roleId       String
-  permissionId String
-  createdAt    DateTime @default(now())
-
-  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
-
-  @@unique([roleId, permissionId])
-  @@index([roleId])
-  @@index([permissionId])
 }
 
 model Address {
@@ -163,83 +108,136 @@ model Address {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @onCreate(now()) @onUpdate(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User     @relation(fields: [userId], references: [uid], onDelete: Cascade)
 
   @@index([userId])
 }
 
-model RefreshToken {
-  id        String   @id @onCreate(uuid())
-  userId    String
-  tokenHash String   @unique
-  isRevoked Boolean  @default(false)
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @onCreate(now()) @onUpdate(now())
+// ----------------------------------------------------
+// EMPLOYEE MANAGEMENT
+// ----------------------------------------------------
+model Employee {
+  uid             String         @id @onCreate(uuid())
+  email           String         @unique
+  passwordHash    String?
+  firstName       String?
+  lastName        String?
+  isEmailVerified Boolean        @default(false)
+  isActive        Boolean        @default(true)
+  refreshTokens   String
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @onCreate(now()) @onUpdate(now())
+  employeeRoles   EmployeeRole[]
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([email])
+}
 
-  @@index([userId])
-  @@index([tokenHash])
+model EmployeeRole {
+  id         String   @id @onCreate(uuid())
+  employeeId String
+  roleId     Int
+  createdAt  DateTime @default(now())
+
+  employee   Employee @relation(fields: [employeeId], references: [uid], onDelete: Cascade)
+  role       Role     @relation(fields: [roleId], references: [rid], onDelete: Cascade)
+
+  @@unique([employeeId, roleId])
+  @@index([employeeId])
+  @@index([roleId])
+}
+
+model Role {
+  rid             Int              @id
+  name            RoleName         @unique
+  description     String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @onCreate(now()) @onUpdate(now())
+
+  employeeRoles   EmployeeRole[]
+  rolePermissions RolePermission[]
+}
+
+model RolePermission {
+  id           String     @id @onCreate(uuid())
+  roleId       Int
+  permissionId String
+  createdAt    DateTime   @default(now())
+
+  role         Role       @relation(fields: [roleId], references: [rid], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [rid], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@index([permissionId])
+}
+
+model Permission {
+  rid             String           @id @onCreate(uuid())
+  action          String // e.g. "products:create", "orders:read"
+  description     String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @onCreate(now()) @onUpdate(now())
+  rolePermissions RolePermission[]
+
+  @@unique([action])
 }
 
 // ----------------------------------------------------
 // PRODUCT CATALOG
 // ----------------------------------------------------
-
 model Category {
-  id          String   @id @onCreate(uuid())
+  id          String            @id @onCreate(uuid())
   name        String
-  slug        String   @unique
+  slug        String            @unique
   description String?
   imageUrl    String?
   parentId    String?
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @onCreate(now()) @onUpdate(now())
+  isActive    Boolean           @default(true)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @onCreate(now()) @onUpdate(now())
 
-  parent   Category?         @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
-  children Category[]        @relation("CategoryHierarchy")
-  products ProductCategory[]
+  parent      Category?         @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children    Category[]        @relation("CategoryHierarchy")
+  products    ProductCategory[]
 
   @@index([slug])
   @@index([parentId])
 }
 
 model Brand {
-  id          String   @id @onCreate(uuid())
+  id          String    @id @onCreate(uuid())
   name        String
-  slug        String   @unique
+  slug        String    @unique
   description String?
   logoUrl     String?
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @onCreate(now()) @onUpdate(now())
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @onCreate(now()) @onUpdate(now())
 
-  products Product[]
+  products    Product[]
 
   @@index([slug])
 }
 
 model Product {
-  id          String   @id @onCreate(uuid())
+  id          String               @id @onCreate(uuid())
   name        String
-  slug        String   @unique
+  slug        String               @unique
   description String?
   basePrice   NumericString(12, 2)
-  currency    String   @default("INR")
+  currency    String               @default("INR")
   brandId     String?
-  isActive    Boolean  @default(true)
-  isFeatured  Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @onCreate(now()) @onUpdate(now())
+  isActive    Boolean              @default(true)
+  isFeatured  Boolean              @default(false)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @onCreate(now()) @onUpdate(now())
 
-  brand      Brand?             @relation(fields: [brandId], references: [id], onDelete: SetNull)
-  categories ProductCategory[]
-  variants   ProductVariant[]
-  images     ProductImage[]
-  attributes ProductAttribute[]
-  reviews    Review[]
+  brand       Brand?               @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  categories  ProductCategory[]
+  variants    ProductVariant[]
+  images      ProductImage[]
+  attributes  ProductAttribute[]
+  reviews     Review[]
 
   @@index([slug])
   @@index([brandId])
@@ -250,8 +248,8 @@ model ProductCategory {
   productId  String
   categoryId String
 
-  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@id([productId, categoryId])
   @@index([productId])
@@ -259,17 +257,17 @@ model ProductCategory {
 }
 
 model ProductVariant {
-  id             String   @id @onCreate(uuid())
-  productId      String
-  sku            String   @unique
-  title          String
-  price          NumericString(12, 2)
-  compareAtPrice NumericString(12, 2)?
-  currency       String   @default("INR")
-  barcode        String?
-  isActive       Boolean  @default(true)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @onCreate(now()) @onUpdate(now())
+  id              String                  @id @onCreate(uuid())
+  productId       String
+  sku             String                  @unique
+  title           String
+  price           NumericString(12, 2)
+  compareAtPrice  NumericString(12, 2)?
+  currency        String                  @default("INR")
+  barcode         String?
+  isActive        Boolean                 @default(true)
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @onCreate(now()) @onUpdate(now())
 
   product         Product                 @relation(fields: [productId], references: [id], onDelete: Cascade)
   attributeValues ProductAttributeValue[]
@@ -291,31 +289,31 @@ model ProductImage {
   position  Int      @default(0)
   createdAt DateTime @default(now())
 
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@index([productId])
 }
 
 model ProductAttribute {
-  id        String   @id @onCreate(uuid())
+  id        String                  @id @onCreate(uuid())
   productId String
   name      String // e.g. "Color", "Size"
-  createdAt DateTime @default(now())
+  createdAt DateTime                @default(now())
 
-  product Product                 @relation(fields: [productId], references: [id], onDelete: Cascade)
-  values  ProductAttributeValue[]
+  product   Product                 @relation(fields: [productId], references: [id], onDelete: Cascade)
+  values    ProductAttributeValue[]
 
   @@index([productId])
 }
 
 model ProductAttributeValue {
-  id          String @id @onCreate(uuid())
+  id          String           @id @onCreate(uuid())
   attributeId String
   variantId   String
   value       String // e.g. "Red", "XL"
 
-  attribute ProductAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  variant   ProductVariant   @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  attribute   ProductAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  variant     ProductVariant   @relation(fields: [variantId], references: [id], onDelete: Cascade)
 
   @@index([attributeId])
   @@index([variantId])
@@ -324,31 +322,30 @@ model ProductAttributeValue {
 // ----------------------------------------------------
 // INVENTORY
 // ----------------------------------------------------
-
 model Warehouse {
-  id        String   @id @onCreate(uuid())
-  name      String
-  code      String   @unique
-  address   String?
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @onCreate(now()) @onUpdate(now())
+  id          String      @id @onCreate(uuid())
+  name        String
+  code        String      @unique
+  address     String?
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @onCreate(now()) @onUpdate(now())
 
   inventories Inventory[]
 }
 
 model Inventory {
-  id            String   @id @onCreate(uuid())
+  id            String              @id @onCreate(uuid())
   variantId     String
   warehouseId   String
-  physicalStock Int      @default(0)
-  reservedStock Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @onCreate(now()) @onUpdate(now())
+  physicalStock Int                 @default(0)
+  reservedStock Int                 @default(0)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @onCreate(now()) @onUpdate(now())
 
-  variant   ProductVariant      @relation(fields: [variantId], references: [id], onDelete: Cascade)
-  warehouse Warehouse           @relation(fields: [warehouseId], references: [id], onDelete: Cascade)
-  movements InventoryMovement[]
+  variant       ProductVariant      @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  warehouse     Warehouse           @relation(fields: [warehouseId], references: [id], onDelete: Cascade)
+  movements     InventoryMovement[]
 
   @@unique([variantId, warehouseId])
   @@index([variantId])
@@ -364,21 +361,21 @@ model InventoryMovement {
   reason      String?
   createdAt   DateTime              @default(now())
 
-  inventory Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+  inventory   Inventory             @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
 
   @@index([inventoryId])
 }
 
 model StockReservation {
-  id        String   @id @onCreate(uuid())
+  id        String         @id @onCreate(uuid())
   variantId String
   orderId   String?
   quantity  Int
   expiresAt DateTime
-  isSettled Boolean  @default(false)
-  createdAt DateTime @default(now())
+  isSettled Boolean        @default(false)
+  createdAt DateTime       @default(now())
 
-  variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
 
   @@index([variantId])
   @@index([expiresAt, isSettled])
@@ -387,27 +384,26 @@ model StockReservation {
 // ----------------------------------------------------
 // SHOPPING (CART & WISHLIST)
 // ----------------------------------------------------
-
 model Cart {
-  id        String   @id @onCreate(uuid())
-  userId    String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @onCreate(now()) @onUpdate(now())
+  id        String     @id @onCreate(uuid())
+  userId    String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @onCreate(now()) @onUpdate(now())
 
-  user  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  items CartItem[]
+  user      User       @relation(fields: [userId], references: [uid], onDelete: Cascade)
+  items     CartItem[]
 }
 
 model CartItem {
-  id        String   @id @onCreate(uuid())
+  id        String         @id @onCreate(uuid())
   cartId    String
   variantId String
-  quantity  Int      @default(1)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @onCreate(now()) @onUpdate(now())
+  quantity  Int            @default(1)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @onCreate(now()) @onUpdate(now())
 
-  cart    Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  cart      Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
 
   @@unique([cartId, variantId])
   @@index([cartId])
@@ -415,13 +411,13 @@ model CartItem {
 }
 
 model Wishlist {
-  id        String   @id @onCreate(uuid())
-  userId    String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @onCreate(now()) @onUpdate(now())
+  id        String         @id @onCreate(uuid())
+  userId    String         @unique
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @onCreate(now()) @onUpdate(now())
 
-  user  User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  items WishlistItem[]
+  user      User           @relation(fields: [userId], references: [uid], onDelete: Cascade)
+  items     WishlistItem[]
 }
 
 model WishlistItem {
@@ -430,7 +426,7 @@ model WishlistItem {
   productId  String
   createdAt  DateTime @default(now())
 
-  wishlist Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
 
   @@unique([wishlistId, productId])
   @@index([wishlistId])
@@ -439,23 +435,22 @@ model WishlistItem {
 // ----------------------------------------------------
 // ORDERS
 // ----------------------------------------------------
-
 model Order {
-  id            String      @id @onCreate(uuid())
-  orderNumber   String      @unique
-  userId        String
-  status        OrderStatus @default(PENDING)
-  currency      String      @default("INR")
-  subtotal      NumericString(12, 2)
-  discountTotal NumericString(12, 2) @default(0)
-  taxTotal      NumericString(12, 2) @default(0)
-  shippingTotal NumericString(12, 2) @default(0)
-  grandTotal    NumericString(12, 2)
-  notes         String?
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @onCreate(now()) @onUpdate(now())
+  id             String               @id @onCreate(uuid())
+  orderNumber    String               @unique
+  userId         String
+  status         OrderStatus          @default(PENDING)
+  currency       String               @default("INR")
+  subtotal       NumericString(12, 2)
+  discountTotal  NumericString(12, 2) @default(0)
+  taxTotal       NumericString(12, 2) @default(0)
+  shippingTotal  NumericString(12, 2) @default(0)
+  grandTotal     NumericString(12, 2)
+  notes          String?
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @onCreate(now()) @onUpdate(now())
 
-  user           User                 @relation(fields: [userId], references: [id], onDelete: Restrict)
+  user           User                 @relation(fields: [userId], references: [uid], onDelete: Restrict)
   items          OrderItem[]
   address        OrderAddress?
   statusHistory  OrderStatusHistory[]
@@ -469,7 +464,7 @@ model Order {
 }
 
 model OrderItem {
-  id             String   @id @onCreate(uuid())
+  id             String               @id @onCreate(uuid())
   orderId        String
   variantId      String
   productName    String // Snapshot
@@ -479,10 +474,10 @@ model OrderItem {
   discountAmount NumericString(12, 2) @default(0)
   taxAmount      NumericString(12, 2) @default(0)
   totalPrice     NumericString(12, 2)
-  createdAt      DateTime @default(now())
+  createdAt      DateTime             @default(now())
 
-  order   Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+  order          Order                @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variant        ProductVariant       @relation(fields: [variantId], references: [id], onDelete: Restrict)
 
   @@index([orderId])
   @@index([variantId])
@@ -501,7 +496,7 @@ model OrderAddress {
   country       String
   createdAt     DateTime @default(now())
 
-  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
 
 model OrderStatusHistory {
@@ -511,7 +506,7 @@ model OrderStatusHistory {
   comment   String?
   createdAt DateTime    @default(now())
 
-  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order     Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   @@index([orderId])
 }
@@ -519,21 +514,20 @@ model OrderStatusHistory {
 // ----------------------------------------------------
 // PAYMENTS
 // ----------------------------------------------------
-
 model Payment {
-  id                String          @id @onCreate(uuid())
+  id                String               @id @onCreate(uuid())
   orderId           String
   provider          PaymentProvider
-  providerPaymentId String?         @unique
+  providerPaymentId String?              @unique
   amount            NumericString(12, 2)
-  currency          String          @default("INR")
-  status            PaymentStatus   @default(PENDING)
-  createdAt         DateTime        @default(now())
-  updatedAt         DateTime        @onCreate(now()) @onUpdate(now())
+  currency          String               @default("INR")
+  status            PaymentStatus        @default(PENDING)
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @onCreate(now()) @onUpdate(now())
 
-  order        Order                @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  transactions PaymentTransaction[]
-  refunds      Refund[]
+  order             Order                @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  transactions      PaymentTransaction[]
+  refunds           Refund[]
 
   @@index([orderId])
   @@index([providerPaymentId])
@@ -547,7 +541,7 @@ model PaymentTransaction {
   rawPayload Json?
   createdAt  DateTime @default(now())
 
-  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  payment    Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
 
   @@index([paymentId])
 }
@@ -566,16 +560,16 @@ model PaymentWebhookEvent {
 }
 
 model Refund {
-  id               String        @id @onCreate(uuid())
+  id               String               @id @onCreate(uuid())
   paymentId        String
   amount           NumericString(12, 2)
   reason           String?
-  providerRefundId String?       @unique
-  status           PaymentStatus @default(PENDING)
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @onCreate(now()) @onUpdate(now())
+  providerRefundId String?              @unique
+  status           PaymentStatus        @default(PENDING)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @onCreate(now()) @onUpdate(now())
 
-  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  payment          Payment              @relation(fields: [paymentId], references: [id], onDelete: Cascade)
 
   @@index([paymentId])
 }
@@ -583,10 +577,9 @@ model Refund {
 // ----------------------------------------------------
 // PROMOTIONS & COUPONS
 // ----------------------------------------------------
-
 model Coupon {
-  id            String       @id @onCreate(uuid())
-  code          String       @unique
+  id            String                @id @onCreate(uuid())
+  code          String                @unique
   description   String?
   discountType  DiscountType
   discountValue NumericString(10, 2)
@@ -595,13 +588,13 @@ model Coupon {
   startDate     DateTime
   endDate       DateTime
   usageLimit    Int?
-  perUserLimit  Int          @default(1)
-  usedCount     Int          @default(0)
-  isActive      Boolean      @default(true)
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @onCreate(now()) @onUpdate(now())
+  perUserLimit  Int                   @default(1)
+  usedCount     Int                   @default(0)
+  isActive      Boolean               @default(true)
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @onCreate(now()) @onUpdate(now())
 
-  usages CouponUsage[]
+  usages        CouponUsage[]
 
   @@index([code])
 }
@@ -613,56 +606,55 @@ model CouponUsage {
   orderId  String?
   usedAt   DateTime @default(now())
 
-  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  coupon   Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [uid], onDelete: Cascade)
 
   @@index([couponId])
   @@index([userId])
 }
 
 model Promotion {
-  id            String       @id @onCreate(uuid())
+  id            String               @id @onCreate(uuid())
   name          String
   description   String?
   discountType  DiscountType
   discountValue NumericString(10, 2)
   startDate     DateTime
   endDate       DateTime
-  isActive      Boolean      @default(true)
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @onCreate(now()) @onUpdate(now())
+  isActive      Boolean              @default(true)
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @onCreate(now()) @onUpdate(now())
 }
 
 // ----------------------------------------------------
 // SHIPPING
 // ----------------------------------------------------
-
 model ShippingMethod {
-  id            String   @id @onCreate(uuid())
+  id            String               @id @onCreate(uuid())
   name          String
   price         NumericString(10, 2)
   estimatedDays String?
-  isActive      Boolean  @default(true)
-  createdAt     DateTime @default(now())
+  isActive      Boolean              @default(true)
+  createdAt     DateTime             @default(now())
 
-  shipments Shipment[]
+  shipments     Shipment[]
 }
 
 model Shipment {
-  id               String    @id @onCreate(uuid())
+  id               String             @id @onCreate(uuid())
   orderId          String
   shippingMethodId String?
   carrier          String?
-  trackingNumber   String?   @unique
-  status           String    @default("PENDING")
+  trackingNumber   String?            @unique
+  status           String             @default("PENDING")
   shippedAt        DateTime?
   deliveredAt      DateTime?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @onCreate(now()) @onUpdate(now())
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @onCreate(now()) @onUpdate(now())
 
-  order          Order              @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  shippingMethod ShippingMethod?    @relation(fields: [shippingMethodId], references: [id], onDelete: SetNull)
-  trackingEvents ShipmentTracking[]
+  order            Order              @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  shippingMethod   ShippingMethod?    @relation(fields: [shippingMethodId], references: [id], onDelete: SetNull)
+  trackingEvents   ShipmentTracking[]
 
   @@index([orderId])
   @@index([trackingNumber])
@@ -676,7 +668,7 @@ model ShipmentTracking {
   timestamp   DateTime @default(now())
   description String?
 
-  shipment Shipment @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+  shipment    Shipment @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
 
   @@index([shipmentId])
 }
@@ -684,7 +676,6 @@ model ShipmentTracking {
 // ----------------------------------------------------
 // CUSTOMER EXPERIENCE (REVIEWS, RETURNS, NOTIFICATIONS)
 // ----------------------------------------------------
-
 model Review {
   id         String   @id @onCreate(uuid())
   productId  String
@@ -697,8 +688,8 @@ model Review {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @onCreate(now()) @onUpdate(now())
 
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [uid], onDelete: Cascade)
 
   @@index([productId])
   @@index([userId])
@@ -714,23 +705,23 @@ model ReturnRequest {
   createdAt DateTime     @default(now())
   updatedAt DateTime     @onCreate(now()) @onUpdate(now())
 
-  order Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  user  User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  items ReturnItem[]
+  order     Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user      User         @relation(fields: [userId], references: [uid], onDelete: Cascade)
+  items     ReturnItem[]
 
   @@index([orderId])
   @@index([userId])
 }
 
 model ReturnItem {
-  id              String   @id @onCreate(uuid())
+  id              String         @id @onCreate(uuid())
   returnRequestId String
   variantId       String
   quantity        Int
-  createdAt       DateTime @default(now())
+  createdAt       DateTime       @default(now())
 
-  returnRequest ReturnRequest  @relation(fields: [returnRequestId], references: [id], onDelete: Cascade)
-  variant       ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+  returnRequest   ReturnRequest  @relation(fields: [returnRequestId], references: [id], onDelete: Cascade)
+  variant         ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
 
   @@index([returnRequestId])
 }
@@ -743,7 +734,7 @@ model Notification {
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [uid], onDelete: Cascade)
 
   @@index([userId])
 }
