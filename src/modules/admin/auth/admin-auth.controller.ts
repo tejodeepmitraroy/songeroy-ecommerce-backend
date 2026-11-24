@@ -9,6 +9,7 @@ import { AdminAuthService } from './admin-auth.service.js';
 import { LoginDto } from './dto/login.dto.js';
 import { RefreshTokenDto } from './dto/refresh-token.dto.js';
 import { AdminJwtAuthGuard } from './guards/admin-jwt-auth.guard.js';
+import { ConfigService } from '@nestjs/config';
 
 const ACCESS_TOKEN_MAX_AGE = 15 * 60 * 1000; // 15 minutes
 const REFRESH_TOKEN_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 days
@@ -16,7 +17,9 @@ const REFRESH_TOKEN_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 days
 @ApiTags('Admin Auth')
 @Controller('auth')
 export class AdminAuthController {
-  constructor(private readonly adminAuthService: AdminAuthService) {}
+  constructor(private readonly adminAuthService: AdminAuthService,
+    private readonly configService:ConfigService
+  ) {}
 
   @Public()
   @Post('login')

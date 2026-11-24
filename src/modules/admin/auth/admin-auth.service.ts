@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { RoleName } from '@prisma/client';
 
-import { STAFF_ROLES } from '../../../common/constants/roles.constant.js';
+
+// import { STAFF_ROLES } from '../../../common/constants/roles.constant.js';
 import { passwordCompare } from '../../../common/helper/passwordHasher.helper.js';
 import type { AuthenticatedUser } from '../../../common/interfaces/jwt-payload.interface.js';
 import { PrismaService } from '../../../database/prisma/prisma.service.js';
@@ -16,23 +16,15 @@ export class AdminAuthService {
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   async login(dto: LoginDto): Promise<{
-    user: { id: string; email: string; roles: string[] };
+    user: { id: string; email: string};
     accessToken: string;
     refreshToken: string;
   }> {
-    const user = await this.prisma.user.findUnique({
-      where: { email: dto.email.toLowerCase() },
-      include: {
-        userRoles: {
-          include: {
-            role: true,
-          },
-        },
-      },
-    });
+    const user = await this.prisma.db.orm.public.Employee.first({ email: dto.email.toLowerCase() })
+
 
     if (!user || !user.passwordHash) {
       throw new UnauthorizedException('Invalid administrative email or password');
@@ -42,12 +34,12 @@ export class AdminAuthService {
       throw new UnauthorizedException('Admin account is inactive');
     }
 
-    const roles = user.userRoles.map((ur) => ur.role.name as RoleName);
-    const hasStaffRole = roles.some((r) => STAFF_ROLES.includes(r));
+    // const roles = user.userRoles.map((ur) => ur.role.name as RoleName);
+    // const hasStaffRole = roles.some((r) => STAFF_ROLES.includes(r));
 
-    if (!hasStaffRole) {
-      throw new UnauthorizedException('Access denied: Staff privileges required');
-    }
+    // if (!hasStaffRole) {
+    //   throw new UnauthorizedException('Access denied: Staff privileges required');
+    // }
 
     const isMatch = await passwordCompare({
       password: dto.password,
@@ -57,13 +49,13 @@ export class AdminAuthService {
       throw new UnauthorizedException('Invalid administrative email or password');
     }
 
-    const tokens = await this.generateTokens(user.id, user.email, roles);
+    const tokens = await this.generateTokens(user.uid, user.email);
 
     return {
       user: {
-        id: user.id,
+        id: user.uid,
         email: user.email,
-        roles,
+      
       },
       ...tokens,
     };
@@ -88,8 +80,8 @@ export class AdminAuthService {
         audience,
       });
 
-      const user = await this.prisma.user.findUnique({
-        where: { id: payload.sub },
+      const user = await this.prisma.db.orm.public.Employee.first({
+        uid: payload.sub,
         include: {
           userRoles: {
             include: {
@@ -130,9 +122,9 @@ export class AdminAuthService {
   private async generateTokens(
     userId: string,
     email: string,
-    roles: string[],
+    // roles: string[],
   ): Promise<{ accessToken: string; refreshToken: string }> {
-    const payload = { sub: userId, email, roles };
+    const payload = { sub: userId, email,  };
 
     const accessSecret =
       this.configService.get<string>('jwt.admin.accessSecret') ||

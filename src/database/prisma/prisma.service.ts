@@ -1,14 +1,17 @@
 import type { OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
+import { db } from '../../prisma/db.js';
 
 @Injectable()
-export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+export class PrismaService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(PrismaService.name);
+  readonly db = db;
 
   async onModuleInit(): Promise<void> {
     try {
-      await this.$connect();
+      // Prisma v8 connects lazily via its connection pool; run a lightweight query to verify on startup
+      await this.db.sql(`SELECT 1`);
       this.logger.log('Prisma connected to PostgreSQL database successfully');
     } catch (error) {
       this.logger.error('Failed to connect to PostgreSQL database', error);
@@ -17,7 +20,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
   }
 
   async onModuleDestroy(): Promise<void> {
-    await this.$disconnect();
+    await this.db.close();
     this.logger.log('Prisma disconnected from PostgreSQL database');
   }
 }
